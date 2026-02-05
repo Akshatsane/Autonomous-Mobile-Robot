@@ -3,11 +3,19 @@ from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration
 import os
 
 def generate_launch_description():
 
     pkg_path = get_package_share_directory("amr_description")
+
+    world_file = os.path.join(
+        get_package_share_directory('amr_description'),
+        'worlds',
+        'lidar_test.world'
+    )
 
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -16,7 +24,10 @@ def generate_launch_description():
                 "launch",
                 "gazebo.launch.py"
             )
-        )
+        ),
+        launch_arguments={
+            'world': world_file
+        }.items()
     )
 
     spawn_entity = Node(
@@ -24,7 +35,8 @@ def generate_launch_description():
         executable="spawn_entity.py",
         arguments=[
             "-topic", "robot_description",
-            "-entity", "amr"
+            "-entity", "amr",
+            "-z", "0.1"
         ],
         output="screen",
     )
@@ -40,16 +52,15 @@ def generate_launch_description():
         package="controller_manager",
         executable="spawner",
         arguments=["diff_drive_controller"],
-    #    remappings=[("/cmd_vel","/diff_drive_controller/cmd_vel_unstamped"),
-    #                ("/diff_drive_controller/odom", "/odom")],
         output="screen",
     )
+
     ekf_node = Node(
         package="robot_localization",
         executable="ekf_node",
         name="ekf_node",
-        output= "screen",
-        parameters = [os.path.join(pkg_path, "config", "ekf.yaml")],
+        output="screen",
+        parameters=[os.path.join(pkg_path, "config", "ekf.yaml")],
     )
 
     return LaunchDescription([

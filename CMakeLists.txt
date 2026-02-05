@@ -12,7 +12,7 @@ find_package(ros2_control REQUIRED)
 find_package(ros2_controllers REQUIRED)
 
 install(
-	DIRECTORY launch urdf config 
+	DIRECTORY launch urdf config worlds
 	DESTINATION share/${PROJECT_NAME}
 )
 # uncomment the following section in order to fill in
