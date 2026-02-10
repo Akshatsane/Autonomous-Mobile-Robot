@@ -1,4 +1,4 @@
-#This repo is for a ROS 2 Humble–based Autonomous Mobile Robot (AMR) featuring custom URDF, differential-drive control via ros2_control, real-time SLAM, AMCL localization, Nav2 motion planning, and full simulation integration.
+This repo is for a ROS 2 Humble–based Autonomous Mobile Robot (AMR) featuring custom URDF, differential-drive control via ros2_control, real-time SLAM, AMCL localization, Nav2 motion planning, and full simulation integration.
 
 Implementation of Navigation is left, rest everything is done.
 
