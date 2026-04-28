@@ -12,7 +12,7 @@ def generate_launch_description():
     amcl_node = Node(
         package='nav2_amcl',
         executable='amcl',
-        name='amcl',s
+        name='amcl',
         output='screen',
         parameters=[amcl_config, {'use_sim_time': True}]
     )

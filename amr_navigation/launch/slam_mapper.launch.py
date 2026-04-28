@@ -10,7 +10,7 @@ def generate_launch_description():
 
     slam_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            [os.path.join(get_package_share_directory('slam_toolbox'), 'launch', 'localization_launch.py')]
+            [os.path.join(get_package_share_directory('slam_toolbox'), 'launch', 'online_async_launch.py')]
         ),
         launch_arguments={
             'slam_params_file': os.path.join(pkg_share, 'config', 'slam.yaml'), 'use_sim_time': 'true'

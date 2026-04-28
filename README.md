@@ -80,8 +80,8 @@ ros2 launch amr_navigation combined.launch.py
 If you encounter any issues while setting up or running the project, feel free to reach out:
 
 - 👨‍💻 Author: Akshat Sane
-- 📧 Email: akshatsane.as@gmail.com  
-- 💼 GitHub: https://github.com/Akshatsane  
+- 📧 Email: akshatsane.as@gmail.com 
+- 💼 GitHub: https://github.com/Akshatsane 
 
 ---
 
@@ -89,12 +89,12 @@ If you encounter any issues while setting up or running the project, feel free t
 
 If you find a bug or face a problem:
 
-1. Check existing issues in the repository  
+1. Check existing issues in the repository 
 2. Provide:
-   - Error logs  
-   - Steps to reproduce  
-   - Screenshots (if applicable)  
-3. Open a new issue  
+   - Error logs 
+   - Steps to reproduce 
+   - Screenshots (if applicable) 
+3. Open a new issue 
 
 ---
 
