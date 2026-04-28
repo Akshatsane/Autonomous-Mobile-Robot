@@ -1,0 +1,66 @@
+ekf_node:
+  ros__parameters:
+    use_sim_time: true
+
+    # ---------------- Timing ----------------
+    frequency: 50.0
+    sensor_timeout: 0.05
+    two_d_mode: true
+    transform_time_offset: 0.0
+    transform_timeout: 0.2
+    predict_to_current_time: true
+
+    # ---------------- Frames ----------------
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: base_footprint   # FIXED
+    world_frame: odom
+    publish_tf: true
+
+    # ---------------- ODOM ----------------
+    odom0: /diff_drive_controller/odom
+
+    odom0_config: [
+      true,  true,  false,
+      false, false, false,
+      true,  false, false,
+      false, false, false,
+      false, false, false
+    ]
+
+    odom0_differential: false
+    odom0_relative: false
+
+    # ---------------- IMU ----------------
+    imu0: /imu
+
+    imu0_config: [
+      false, false, false,
+      false, false, true,   #  yaw ONLY
+      false, false, false,
+      false, false, false,  # removed angular velocity
+      false, false, false
+    ]
+
+    process_noise_covariance: [
+      0.05, 0, 0, 0, 0, 0,
+      0, 0.05, 0, 0, 0, 0,
+      0, 0, 1.0, 0, 0, 0,
+      0, 0, 0, 0.1, 0, 0,
+      0, 0, 0, 0, 0.1, 0,
+      0, 0, 0, 0, 0, 0.5   #  increase yaw noise
+    ]
+
+
+
+    imu0_queue_size: 10
+    imu0_nodelay: true
+    imu0_differential: false
+    imu0_relative: false
+    imu0_remove_gravitational_acceleration: true
+
+    imu0_pose_rejection_threshold: 0.5
+    imu0_twist_rejection_threshold: 0.5
+
+    smooth_lagged_data: true
+    history_length: 0.2
