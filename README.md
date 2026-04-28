@@ -4,8 +4,10 @@ A complete ROS2-based Autonomous Mobile Robot (AMR) stack including:
 
 - Robot description (URDF + Gazebo simulation)
 - Localization (AMCL / SLAM)
-- Navigation (Nav2)
-- Sensor fusion (EKF)
+- Navigation (Seperate components of Nav2)
+- Sensor fusion (EKF) //OPTIONAL
+
+This repo focuses on localization and navigation of an AMR by conceptually seperating the components of Nav2 algorithm and launch different components of it instead of using the package completely.
 
 ---
 
@@ -50,7 +52,7 @@ Instead of sourcing different bash files, open the bashrc file with the first co
 
 ```bash
 gedit ~/.bashrc
-source ~/amr_ws/install/setup.bash
+source ~/amr_ws/install/setup.bash  #paste this command into bashrc
 source ~/.bashrc
 ```
 
@@ -64,13 +66,21 @@ source /opt/ros/humble/setup.bash
 ### 3. Launch Simulation
 
 ```bash
-ros2 launch amr_description gazebo.launch.py
+ros2 launch amr_description amr_bringup.launch.py
 ```
 
-### 4. Run Navigation 
+### 4. Launch Mapping
 
 ```bash
-ros2 launch amr_navigation combined.launch.py
+ros2 launch amr_navigation slam_mapper.launch.py
+```
+
+#Note: Make sure to kill slam_mapper launch file before running the navigation file as it may conflict.
+
+### 5. Run Navigation 
+
+```bash
+ros2 launch amr_navigation nav_bringup.launch.py
 ```
 
 
